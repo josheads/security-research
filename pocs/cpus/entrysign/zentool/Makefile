@@ -11,6 +11,12 @@ PKGDEPS=openssl,gmp,json-c
 
 all: check zentool mcop mcas opcodes mtalk dumper
 
+amd_ucode.py: amd_ucode.ksy
+	/opt/homebrew/Cellar/kaitai-struct-compiler/0.10/bin/kaitai-struct-compiler --target python amd_ucode.ksy
+
+test_ksy: amd_ucode.py
+	python3 test_parser.py cpu00860F01_ver0860010C_2023-10-07_3D4A6C3D.bin
+
 # build debug versions of all binaries
 debug:	CFLAGS+=-fsanitize=address -O0
 debug: clean all

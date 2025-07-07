@@ -11,3 +11,11 @@ mtalk
 NOTES
 *_fields.h
 *.tar.gz
+
+# Python
+__pycache__/
+*.pyc
+
+# Generated files
+amd_ucode.py
+test_parser.py
