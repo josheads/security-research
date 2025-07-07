@@ -25,6 +25,7 @@
 
 #include "ucode.h"
 #include "risc86.h"
+#include "compat.h"
 #include "options.h"
 #include "disas.h"
 #include "fields.h"

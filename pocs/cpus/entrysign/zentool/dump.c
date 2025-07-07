@@ -28,6 +28,7 @@
 
 #include "util.h"
 #include "ucode.h"
+#include "compat.h"
 #include "risc86.h"
 #include "crypt.h"
 #include "options.h"

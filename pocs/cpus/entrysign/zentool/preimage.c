@@ -27,6 +27,7 @@
 #include <assert.h>
 
 #include "ucode.h"
+#include "compat.h"
 #include "risc86.h"
 #include "util.h"
 #include "crypt.h"

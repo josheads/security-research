@@ -23,6 +23,7 @@
 #include <err.h>
 
 #include "ucode.h"
+#include "compat.h"
 #include "disas.h"
 #include "risc86.h"
 #include "parse.h"

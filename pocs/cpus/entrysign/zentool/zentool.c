@@ -57,7 +57,9 @@ static const struct subcmds kSubcmds[] = {
     {       "help",   cmd_help_main,        "List available subcommands" },
     {      "print",   cmd_dump_main,             "Decode an update file" },
     {     "resign", cmd_factor_main,        "Fix an incorrect signature" },
-    {       "load",   cmd_load_main,   "Load an update file onto a core" },
+        #ifndef __APPLE__
+    { "load",       cmd_load_main,      "apply microcode update to processor"   },
+#endif
     {       "edit",   cmd_edit_main, "Modify contents of an update file" },
     {     "verify", cmd_verify_main,      "Validate and check signature" },
     {    "encrypt",  cmd_crypt_main,            "Encrypt an update file" },

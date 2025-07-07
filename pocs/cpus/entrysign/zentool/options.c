@@ -28,6 +28,7 @@
 
 #include "util.h"
 #include "options.h"
+#include "compat.h"
 
 
 int print_usage_generic(const char *name, const char *param, const struct option *opts, const char **help)

@@ -17,6 +17,23 @@
 #ifndef __COMPAT_H
 #define __COMPAT_H
 
+#include <string.h>
+#include <stdlib.h>
+#include <alloca.h>
+
+#if defined(__APPLE__)
+#define program_invocation_short_name getprogname()
+#define strdupa(s) strcpy(alloca(strlen(s) + 1), s)
+#define strchrnul(s, c) ({ char *_s = strchr(s, c); if (!_s) _s = s + strlen(s); _s; })
+#endif
+
+#if !defined(__GLIBC__)
+static inline void *mempcpy(void *dest, const void *src, size_t n)
+{
+    return (char *)memcpy(dest, src, n) + n;
+}
+#endif
+
 #ifdef __GLIBC__
 # if __GLIBC_MINOR__ < 38
 #  pragma GCC diagnostic ignored "-Wstringop-overflow"
@@ -24,5 +41,6 @@
 #  define strlcat(d, s, n) strncat((d), (s), (n))
 # endif
 #endif
+
 
 #endif

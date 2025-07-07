@@ -30,16 +30,17 @@
 #include "crypt.h"
 #include "options.h"
 #include "xxtea.h"
+#include "compat.h"
 
 static uint32_t xxteaKey[4];
 
-static int encrypt;
+static int encrypt_flag;
 static int decrypt;
 
 static const struct option kLongOpts[] = {
     {          "help", false, NULL, 'h' },
     {       "decrypt", false, &decrypt, true },
-    {       "encrypt", false, &encrypt, true },
+    {       "encrypt", false, &encrypt_flag, true },
     {0},
 };
 
@@ -78,7 +79,7 @@ int cmd_crypt_main(int argc, char **argv)
     reset_getopt();
 
     if (strcmp(*argv, "encrypt") == 0)
-        encrypt = true;
+        encrypt_flag = true;
     if (strcmp(*argv, "decrypt") == 0)
         decrypt = true;
 
@@ -96,7 +97,7 @@ int cmd_crypt_main(int argc, char **argv)
         errx(EXIT_FAILURE, "must provide a filename");
     }
 
-    if ((encrypt ^ decrypt) != true) {
+    if ((encrypt_flag ^ decrypt) != true) {
         errx(EXIT_FAILURE, "must specify encryption or decryption");
     }
 
@@ -117,7 +118,7 @@ int cmd_crypt_main(int argc, char **argv)
     iptr = ptr = mempcpy(ptr, patch->matchregs, sizeof(match_t) * patch->nmatch);
     mempcpy(ptr, patch->insns, sizeof(*patch->insns) * patch->nquad);
 
-    if (encrypt && patch->hdr.options.encrypted == false) {
+    if (encrypt_flag && patch->hdr.options.encrypted == false) {
         xxtea_encrypt(buf, cryptsz, xxteaKey);
         patch->hdr.options.encrypted = true;
     }

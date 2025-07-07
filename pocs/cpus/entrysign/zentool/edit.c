@@ -32,6 +32,7 @@
 #include "risc86.h"
 #include "crypt.h"
 #include "options.h"
+#include "compat.h"
 #include "data.h"
 #include "parse.h"
 #include "fields.h"

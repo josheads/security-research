@@ -30,6 +30,7 @@
 #include "crypt.h"
 #include "parse.h"
 #include "options.h"
+#include "compat.h"
 
 // segment:[base+index+0xdisp]
 static bool zen_parse_ldst_memop(const char *str, struct LdStOp *op)
